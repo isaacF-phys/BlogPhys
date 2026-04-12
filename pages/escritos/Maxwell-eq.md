@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecuaciones de Maxwell | Quantum Lab</title>
+    
+    <!-- Fuentes Sci-Fi -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- MathJax para LaTeX -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    
+    <style>
+        :root {
+            --space-black: #0B0C10;
+            --dark-gray: #1F2833;
+            --cyan-neon: #45A29E;
+            --cyan-bright: #66FCF1;
+            --amber: #F2A900;
+            --text-light: #C5C6C7;
+            --glow: 0 0 10px rgba(102, 252, 241, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--space-black) 0%, #0a0f1a 100%);
+            color: var(--text-light);
+            font-family: 'Exo 2', sans-serif;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 230px 80px, var(--cyan-bright), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 250px 250px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .articulo-completo {
+            background: rgba(31, 40, 51, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--cyan-neon);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: var(--glow);
+        }
+
+        .articulo-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--amber);
+        }
+
+        .articulo-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            color: var(--cyan-bright);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(102, 252, 241, 0.5);
+        }
+
+        .metadata {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            color: var(--amber);
+            font-family: 'Courier New', monospace;
+        }
+
+        .ecuacion-destacada {
+            background: rgba(11, 12, 16, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--cyan-bright);
+            overflow-x: auto;
+            text-align: center;
+        }
+
+        .ecuacion-destacada-grande {
+            background: linear-gradient(135deg, rgba(69, 162, 158, 0.15), rgba(242, 169, 0, 0.05));
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 2.5rem 0;
+            border: 2px solid var(--cyan-neon);
+            overflow-x: auto;
+            text-align: center;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyan-bright);
+            margin: 2.5rem 0 1.5rem 0;
+            font-size: 1.8rem;
+            border-left: 4px solid var(--amber);
+            padding-left: 1rem;
+        }
+
+        h3 {
+            color: var(--amber);
+            margin: 2rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        p {
+            margin: 1.2rem 0;
+            text-align: justify;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 2.5rem 0;
+            border-radius: 10px;
+            border: 1px solid var(--cyan-neon);
+            box-shadow: var(--glow);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .boton-volver {
+            display: inline-block;
+            background: transparent;
+            color: var(--cyan-bright);
+            border: 2px solid var(--cyan-neon);
+            padding: 0.8rem 2rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .boton-volver:hover {
+            background: var(--cyan-neon);
+            color: var(--space-black);
+            box-shadow: var(--glow);
+        }
+
+        .nota-margen {
+            background: rgba(242, 169, 0, 0.08);
+            padding: 1.2rem 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 3px solid var(--amber);
+        }
+
+        .grid-maxwell {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .maxwell-card {
+            background: rgba(11, 12, 16, 0.5);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--cyan-neon);
+        }
+
+        .maxwell-card h4 {
+            color: var(--amber);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .ecuacion-math {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        code {
+            background: var(--dark-gray);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            color: var(--cyan-bright);
+            font-family: 'Courier New', monospace;
+        }
+
+        pre {
+            background: var(--dark-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #333;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            line-height: 1.8;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid var(--cyan-neon);
+        }
+
+        th {
+            background: rgba(69, 162, 158, 0.2);
+            color: var(--cyan-bright);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .grid-maxwell {
+                grid-template-columns: 1fr;
+            }
+            .articulo-completo {
+                padding: 1.5rem;
+            }
+            .articulo-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botón para volver al índice -->
+        <a href="../index.html" class="boton-volver">← Volver al Laboratorio</a>
+        
+        <article class="articulo-completo">
+            <header class="articulo-header">
+                <h1>⚡ Ecuaciones de Maxwell ⚡</h1>
+                <div class="metadata">
+                    <span>📅 10 Mayo 2024</span>
+                    <span>🏷️ Electromagnetismo</span>
+                    <span>⏱️ 20 min lectura</span>
+                </div>
+                <div style="margin-top: 1.5rem; font-size: 1.1rem; color: var(--cyan-bright);">
+                    "Y dijo Dios: 'Sea la luz', y hubo ecuaciones de Maxwell"
+                </div>
+            </header>
+
+            <!-- Las 4 ecuaciones en formato destacado -->
+            <section>
+                <div class="ecuacion-destacada-grande">
+                    <div style="display: grid; gap: 1.5rem;">
+                        <div>\[\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}\]</div>
+                        <div>\[\nabla \cdot \mathbf{B} = 0\]</div>
+                        <div>\[\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}\]</div>
+                        <div>\[\nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}\]</div>
+                    </div>
+                    <p style="text-align: center; margin-top: 1.5rem; color: var(--amber);">
+                        Forma diferencial • Sistema Internacional
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h2>1. Introducción Histórica</h2>
+                <p>En 1865, James Clerk Maxwell publicó <em>"A Dynamical Theory of the Electromagnetic Field"</em>, unificando electricidad, magnetismo y óptica en una sola teoría. Su mayor contribución fue el <strong>término de corriente de desplazamiento</strong> \( \mu_0\epsilon_0\frac{\partial\mathbf{E}}{\partial t} \), que predijo la existencia de ondas electromagnéticas.</p>
+                
+                <div class="nota-margen">
+                    <strong>🔬 Dato histórico:</strong> Maxwell calculó la velocidad de estas ondas usando \( c = 1/\sqrt{\mu_0\epsilon_0} \) y obtuvo ≈ 3×10⁸ m/s, coincidiendo con mediciones de la velocidad de la luz. Concluyó: <em>"La luz es una perturbación electromagnética"</em>.
+                </div>
+            </section>
+
+            <section>
+                <h2>2. Las Cuatro Ecuaciones (Forma Diferencial)</h2>
+                
+                <div class="grid-maxwell">
+                    <div class="maxwell-card">
+                        <h4>🔴 Ley de Gauss (Eléctrica)</h4>
+                        <div class="ecuacion-math">\[\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}\]</div>
+                        <p style="margin-top: 1rem;">Las cargas eléctricas son fuentes del campo eléctrico. Las líneas de campo nacen en cargas positivas y mueren en negativas.</p>
+                    </div>
+                    
+                    <div class="maxwell-card">
+                        <h4>🔵 Ley de Gauss (Magnética)</h4>
+                        <div class="ecuacion-math">\[\nabla \cdot \mathbf{B} = 0\]</div>
+                        <p style="margin-top: 1rem;">No existen monopolos magnéticos. Las líneas de campo magnético son siempre cerradas.</p>
+                    </div>
+                    
+                    <div class="maxwell-card">
+                        <h4>🟡 Ley de Faraday-Lenz</h4>
+                        <div class="ecuacion-math">\[\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}\]</div>
+                        <p style="margin-top: 1rem;">Un campo magnético variable en el tiempo induce un campo eléctrico rotacional.</p>
+                    </div>
+                    
+                    <div class="maxwell-card">
+                        <h4>🟢 Ley de Ampère-Maxwell</h4>
+                        <div class="ecuacion-math">\[\nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}\]</div>
+                        <p style="margin-top: 1rem;">Las corrientes eléctricas y los campos eléctricos variables generan campo magnético.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>3. Forma Integral</h2>
+                <p>Aplicando los teoremas de Gauss y Stokes, obtenemos la forma integral (útil para problemas con simetría):</p>
+                
+                <table>
+                    <tr>
+                        <th>Forma Diferencial</th>
+                        <th>Forma Integral</th>
+                    </tr>
+                    <tr>
+                        <td>\(\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}\)</td>
+                        <td>\(\oint_S \mathbf{E} \cdot d\mathbf{A} = \frac{Q_{\text{enc}}}{\epsilon_0}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\nabla \cdot \mathbf{B} = 0\)</td>
+                        <td>\(\oint_S \mathbf{B} \cdot d\mathbf{A} = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}\)</td>
+                        <td>\(\oint_C \mathbf{E} \cdot d\mathbf{l} = -\frac{d}{dt}\int_S \mathbf{B} \cdot d\mathbf{A}\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}\)</td>
+                        <td>\(\oint_C \mathbf{B} \cdot d\mathbf{l} = \mu_0 I_{\text{enc}} + \mu_0 \epsilon_0 \frac{d}{dt}\int_S \mathbf{E} \cdot d\mathbf{A}\)</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section>
+                <h2>4. Ondas Electromagnéticas</h2>
+                <p>En el vacío (\( \rho = 0, \mathbf{J} = 0 \)), las ecuaciones de Maxwell se reducen a:</p>
+                
+                <div class="ecuacion-destacada">
+                    \[
+                    \nabla^2 \mathbf{E} - \mu_0\epsilon_0 \frac{\partial^2 \mathbf{E}}{\partial t^2} = 0
+                    \]
+                    \[
+                    \nabla^2 \mathbf{B} - \mu_0\epsilon_0 \frac{\partial^2 \mathbf{B}}{\partial t^2} = 0
+                    \]
+                </div>
+                
+                <p>Estas son <strong>ecuaciones de onda</strong> con velocidad de propagación:</p>
+                
+                <div class="ecuacion-destacada">
+                    \[
+                    c = \frac{1}{\sqrt{\mu_0\epsilon_0}} \approx 2.9979 \times 10^8 \text{ m/s}
+                    \]
+                </div>
+                
+                <h3>4.1 Solución de Onda Plana</h3>
+                <p>Una solución particular es la onda plana monocromática:</p>
+                
+                <div class="ecuacion-destacada">
+                    \[
+                    \mathbf{E}(\mathbf{r}, t) = \mathbf{E}_0 e^{i(\mathbf{k}\cdot\mathbf{r} - \omega t)}
+                    \]
+                    \[
+                    \mathbf{B}(\mathbf{r}, t) = \frac{1}{c} \hat{\mathbf{k}} \times \mathbf{E}(\mathbf{r}, t)
+                    \]
+                </div>
+                
+                <p>Donde \( \omega = ck \) y \( \mathbf{E} \perp \mathbf{B} \perp \hat{\mathbf{k}} \) (ondas transversales).</p>
+            </section>
+
+            <section>
+                <h2>5. Simulación Computacional</h2>
+                <p>He desarrollado una simulación en Python de una onda electromagnética plana propagándose en el vacío. El código resuelve numéricamente las ecuaciones de Maxwell usando el método FDTD (Finite-Difference Time-Domain):</p>
+                
+                <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+# Parámetros de la simulación
+c = 3e8  # Velocidad de la luz
+dx = 1e-3  # Paso espacial
+dt = dx / (2 * c)  # Condición de estabilidad CFL
+Nx = 500  # Número de puntos en x
+steps = 1000  # Pasos temporales
+
+# Inicialización de campos
+Ez = np.zeros(Nx)  # Campo eléctrico (polarización z)
+Hy = np.zeros(Nx)  # Campo magnético (polarización y)
+
+# Fuente: pulso gaussiano en el centro
+source_pos = Nx // 4
+x = np.arange(Nx) * dx
+
+def update_fields():
+    # Actualizar Hy (Ley de Ampère)
+    Hy[:-1] += (dt / (mu0 * dx)) * (Ez[1:] - Ez[:-1])
+    
+    # Actualizar Ez (Ley de Faraday)
+    Ez[1:] += (dt / (epsilon0 * dx)) * (Hy[1:] - Hy[:-1])
+    
+    # Añadir fuente
+    Ez[source_pos] += np.exp(-((t - 30)/10)**2)
+    
+    return Ez, Hy
+
+# Condiciones de frontera absorbentes (PML simplificadas)
+Ez[0] = Ez[-1] = 0</code></pre>
+
+                <h3>5.1 Animación de la Onda EM</h3>
+                
+                <!-- REEMPLAZA ESTE ID CON EL DE TU VIDEO DE YOUTUBE -->
+                <div class="video-container">
+                    <iframe 
+                        width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/AOQx7pPWXlY" 
+                        title="Simulación de onda electromagnética - Ecuaciones de Maxwell"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p style="text-align: center; opacity: 0.8; margin-top: -1rem;">
+                    <em>Propagación de onda electromagnética plana. Campos E (rojo) y B (azul) oscilando en fase.</em>
+                </p>
+            </section>
+
+            <section>
+                <h2>6. Potenciales Electromagnéticos</h2>
+                <p>Dado que \( \nabla \cdot \mathbf{B} = 0 \), podemos definir un potencial vector \( \mathbf{A} \) tal que:</p>
+                
+                <div class="ecuacion-destacada">
+                    \[
+                    \mathbf{B} = \nabla \times \mathbf{A}
+                    \]
+                </div>
+                
+                <p>Sustituyendo en la ley de Faraday:</p>
+                
+                <div class="ecuacion-destacada">
+                    \[
+                    \nabla \times \left( \mathbf{E} + \frac{\partial \mathbf{A}}{\partial t} \right) = 0
+                    \]
+                </div>
+                
+                <p>Esto permite definir el potencial escalar \( \phi \):</p>
+                
+                <div class="ecuacion-destacada">
+                    \[
+                    \mathbf{E} = -\nabla \phi - \frac{\partial \mathbf{A}}{\partial t}
+                    \]
+                </div>
+                
+                <div class="nota-margen">
+                    <strong>🎯 Invariancia Gauge:</strong> Los potenciales no son únicos. La transformación \( \mathbf{A} \to \mathbf{A} + \nabla \Lambda \), \( \phi \to \phi - \frac{\partial \Lambda}{\partial t} \) deja invariantes los campos físicos.
+                </div>
+            </section>
+
+            <section>
+                <h2>7. Formulación Covariante (Relativista)</h2>
+                <p>Las ecuaciones de Maxwell son naturalmente compatibles con la relatividad especial. Definiendo el tensor de campo electromagnético:</p>
+                
+                <div class="ecuacion-destacada">
+                    \[
+                    F^{\mu\nu} = \partial^\mu A^\nu - \partial^\nu A^\mu = 
+                    \begin{pmatrix}
+                    0 & -E_x/c & -E_y/c & -E_z/c \\
+                    E_x/c & 0 & -B_z & B_y \\
+                    E_y/c & B_z & 0 & -B_x \\
+                    E_z/c & -B_y & B_x & 0
+                    \end{pmatrix}
+                    \]
+                </div>
+                
+                <p>Las ecuaciones inhomogéneas se escriben como:</p>
+                
+                <div class="ecuacion-destacada">
+                    \[
+                    \partial_\mu F^{\mu\nu} = \mu_0 J^\nu
+                    \]
+                </div>
+                
+                <p>Y las homogéneas (identidad de Bianchi):</p>
+                
+                <div class="ecuacion-destacada">
+                    \[
+                    \partial_\lambda F_{\mu\nu} + \partial_\mu F_{\nu\lambda} + \partial_\nu F_{\lambda\mu} = 0
+                    \]
+                </div>
+            </section>
+
+            <section>
+                <h2>8. Aplicaciones en Ciencia Ficción</h2>
+                <div class="grid-maxwell" style="grid-template-columns: 1fr 1fr;">
+                    <div>
+                        <h3>🚀 Propulsión EM</h3>
+                        <p>El concepto de "EM Drive" (aunque controversial) intenta usar cavidades resonantes para generar empuje sin propelente, basándose en la presión de radiación electromagnética.</p>
+                    </div>
+                    <div>
+                        <h3>🛡️ Escudos de Plasma</h3>
+                        <p>Campos magnéticos intensos (\( \sim \) Teslas) pueden confinar plasma caliente, protegiendo naves de radiación cósmica (concepto real estudiado por NASA).</p>
+                    </div>
+                    <div>
+                        <h3>⚡ Armas de Rayos</h3>
+                        <p>Los láseres de alta potencia son una manifestación directa de ondas EM coherentes predichas por Maxwell.</p>
+                    </div>
+                    <div>
+                        <h3>🌌 Comunicación Interestelar</h3>
+                        <p>Las ondas de radio viajan a \( c \) y son nuestra única ventana para SETI. Las ecuaciones de Maxwell gobiernan su propagación.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>9. Conclusiones</h2>
+                <ul>
+                    <li>Las ecuaciones de Maxwell unifican electricidad, magnetismo y óptica en un marco matemático elegante.</li>
+                    <li>Predicen la existencia de ondas electromagnéticas, confirmadas por Hertz en 1887.</li>
+                    <li>Son invariantes bajo transformaciones de Lorentz, sentando bases para la relatividad especial.</li>
+                    <li>Su ruptura de simetría (ausencia de monopolos magnéticos) sigue siendo un misterio teórico.</li>
+                    <li>Constituyen el primer ejemplo histórico de una <strong>teoría de gauge</strong> \( U(1) \), modelo para todas las teorías cuánticas de campos posteriores.</li>
+                </ul>
+                
+                <div class="ecuacion-destacada" style="margin-top: 2rem;">
+                    \[
+                    \mathcal{L}_{\text{EM}} = -\frac{1}{4} F_{\mu\nu}F^{\mu\nu} - J^\mu A_\mu
+                    \]
+                    <p style="margin-top: 1rem;">Densidad Lagrangiana del campo electromagnético</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>📚 Referencias</h2>
+                <ol>
+                    <li>Jackson, J. D. (1998). <em>Classical Electrodynamics</em> (3rd ed.). Wiley.</li>
+                    <li>Griffiths, D. J. (2017). <em>Introduction to Electrodynamics</em> (4th ed.). Cambridge University Press.</li>
+                    <li>Maxwell, J. C. (1865). "A Dynamical Theory of the Electromagnetic Field". <em>Philosophical Transactions of the Royal Society</em>, 155, 459-512.</li>
+                    <li>Feynman, R. P., Leighton, R. B., & Sands, M. (1964). <em>The Feynman Lectures on Physics, Vol. II</em>. Addison-Wesley.</li>
+                </ol>
+            </section>
+
+            <section style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--cyan-neon);">
+                <h3>🔗 Recursos Adicionales</h3>
+                <ul>
+                    <li><a href="#" style="color: var(--cyan-bright);">📄 Descargar PDF con la derivación completa</a></li>
+                    <li><a href="#" style="color: var(--cyan-bright);">💻 Código Python de la simulación FDTD</a></li>
+                    <li><a href="#" style="color: var(--cyan-bright);">📊 Datos experimentales (osciloscopio)</a></li>
+                </ul>
+            </section>
+        </article>
+        
+        <!-- Navegación entre ejercicios -->
+        <div style="display: flex; justify-content: space-between; margin: 2rem 0;">
+            <a href="pozo-cuantico.html" class="boton-volver">← Anterior: Pozo Cuántico</a>
+            <a href="lagrangiano.html" class="boton-volver">Siguiente: Mecánica Lagrangiana →</a>
+        </div>
+        
+        <!-- Botón para volver -->
+        <div style="text-align: center;">
+            <a href="../index.html" class="boton-volver">← Volver al Índice de Escritos</a>
+        </div>
+    </div>
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                tags: 'ams',
+                macros: {
+                    E: '\\mathbf{E}',
+                    B: '\\mathbf{B}',
+                    J: '\\mathbf{J}'
+                }
+            }
+        };
+    </script>
+</body>
+</html>
