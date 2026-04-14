@@ -282,7 +282,7 @@
                  <!--   <span>⏱️ 20 min lectura</span>   -->
                 </div>
                 <div style="margin-top: 1.5rem; font-size: 1.1rem; color: var(--cyan-bright);">
-                  "And God said, 'Let there be light,' and there were Maxwell's equations."
+                  "And "God" said, 'Let there be light,' and there were Maxwell's equations."
                 </div>
             </header>
 
@@ -290,10 +290,10 @@
             <section>
                 <div class="ecuacion-destacada-grande">
                     <div style="display: grid; gap: 1.5rem;">
-                        <div>\[\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}\]</div>
-                        <div>\[\nabla \cdot \mathbf{B} = 0\]</div>
-                        <div>\[\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}\]</div>
-                        <div>\[\nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}\]</div>
+                        <div>\[\nabla \cdot \vec{E} = \frac{\rho_T}{\varepsilon_0}\]</div>
+                        <div>\[\nabla \cdot \vec{B} = 0\]</div>
+                        <div>\[\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}\]</div>
+                        <div>\[\nabla \times \vec{B} = \mu_0 \vec{J}_T + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t}\]</div>
                     </div>
                     <p style="text-align: center; margin-top: 1.5rem; color: var(--amber);">
                         Differential form • International System
@@ -316,25 +316,25 @@
                 <div class="grid-maxwell">
                     <div class="maxwell-card">
                         <h4> Gauss Law (Electric)</h4>
-                        <div class="ecuacion-math">\[\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}\]</div>
+                        <div class="ecuacion-math">\[\nabla \cdot \vec{E} = \frac{\rho_T}{\varepsilon_0}\]</div>
                         <p style="margin-top: 1rem;">Electric charges are sources of the electric field. Field lines originate at positive charges and terminate at negative charges.</p>
                     </div>
                     
                     <div class="maxwell-card">
                         <h4> Gauss Law (Magnetic)</h4>
-                        <div class="ecuacion-math">\[\nabla \cdot \mathbf{B} = 0\]</div>
+                        <div class="ecuacion-math">\[\nabla \cdot \vec{B} = 0\]</div>
                         <p style="margin-top: 1rem;">Magnetic monopoles do not exist. Magnetic field lines are always closed loops.</p>
                     </div>
                     
                     <div class="maxwell-card">
                         <h4> Faraday-Lenz Law</h4>
-                        <div class="ecuacion-math">\[\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}\]</div>
+                        <div class="ecuacion-math">\[\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}\]</div>
                         <p style="margin-top: 1rem;">A time-varying magnetic field induces a rotational electric field.</p>
                     </div>
                     
                     <div class="maxwell-card">
                         <h4> Ampère-Maxwell Law</h4>
-                        <div class="ecuacion-math">\[\nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}\]</div>
+                        <div class="ecuacion-math">\[\nabla \times \vec{B} = \mu_0 \vec{J}_T + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t}\]</div>
                         <p style="margin-top: 1rem;">Electric currents and changing electric fields generate a magnetic field.</p>
                     </div>
                 </div>
@@ -350,20 +350,20 @@
                         <th>Integral Form</th>
                     </tr>
                     <tr>
-                        <td>\(\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}\)</td>
-                        <td>\(\oint_S \mathbf{E} \cdot d\mathbf{A} = \frac{Q_{\text{enc}}}{\epsilon_0}\)</td>
+                        <td>\(\nabla \cdot \vec{E} = \frac{\rho_T}{\varepsilon_0}\)</td>
+                        <td>\(\oint_S \vec{E} \cdot d\vec{a} = \frac{Q_{\text{enc}}^{T}{\varepsilon_0}\)</td>
                     </tr>
                     <tr>
-                        <td>\(\nabla \cdot \mathbf{B} = 0\)</td>
-                        <td>\(\oint_S \mathbf{B} \cdot d\mathbf{A} = 0\)</td>
+                        <td>\(\nabla \cdot \vec{B} = 0\)</td>
+                        <td>\(\oint_S \vec{B} \cdot d\vec{a} = 0\)</td>
                     </tr>
                     <tr>
-                        <td>\(\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}\)</td>
-                        <td>\(\oint_C \mathbf{E} \cdot d\mathbf{l} = -\frac{d}{dt}\int_S \mathbf{B} \cdot d\mathbf{A}\)</td>
+                        <td>\(\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}\)</td>
+                        <td>\(\oint_C \vec{E} \cdot d\vec{l} = -\frac{d}{dt}\int_S \vec{B} \cdot d\vec{a}\)</td>
                     </tr>
                     <tr>
-                        <td>\(\nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}\)</td>
-                        <td>\(\oint_C \mathbf{B} \cdot d\mathbf{l} = \mu_0 I_{\text{enc}} + \mu_0 \epsilon_0 \frac{d}{dt}\int_S \mathbf{E} \cdot d\mathbf{A}\)</td>
+                        <td>\(\nabla \times \vec{B} = \mu_0 \vec{J}_T + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t}\)</td>
+                        <td>\(\oint_C \vec{B} \cdot d\vec{l} = \mu_0 I_{\text{enc}}^{\text{atr}} + \mu_0 \varepsilon_0 \frac{d}{dt}\int_S \vec{E} \cdot d\vec{a}\)</td>
                     </tr>
                 </table>
             </section>
@@ -573,7 +573,7 @@ Ez[0] = Ez[-1] = 0</code></pre>
                 <h2>📚 References</h2>
                 <ol>
           <!--          <li>Jackson, J. D. (1998). <em>Classical Electrodynamics</em> (3rd ed.). Wiley.</li>    -->
-                    <li>Griffiths, D. J. (2017). <em>Introduction to Electrodynamics</em> (4th ed.). Cambridge University Press.</li>
+                    <li>Griffiths, D. J. (2017). <em>Introduction to Electrodynamics</em> (5th ed.). Cambridge University Press.</li>
                     <li>Feynman, R. P., Leighton, R. B., & Sands, M. (1964). <em>The Feynman Lectures on Physics, Vol. II</em>. Addison-Wesley.</li>
                 </ol>
             </section>
