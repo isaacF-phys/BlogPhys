@@ -291,11 +291,11 @@
                   <p> Applying the method of separation of variables in Cartesian coordinates to Laplace's equation 
                       \[ \nabla^2 \phi = 0 \] and given the zero boundary conditions on the four side walls, the general solution is a double Fourier series in sines with exponential decay in $x$:
                       \[ \phi(x,y,z) = \sum_{n=1}^{\infty} \sum_{m=1}^{\infty} A_{nm} \, e^{-\pi \sqrt{(n/a)^2 + (m/b)^2} \, x} \, \sin\left(\frac{n\pi y}{a}\right) \sin\left(\frac{m\pi z}{b}\right). \]
-The coefficients $A_{nm}$ are determined from the boundary condition at $x=0$:
+The coefficients \(A_{nm}\) are determined from the boundary condition at \(x=0\):
 \[ \phi_0(y,z) = \phi(0,y,z) = \sum_{n,m} A_{nm} \sin\left(\frac{n\pi y}{a}\right) \sin\left(\frac{m\pi z}{b}\right). \]
-For the case of constant potential $\phi_0(y,z) = \phi_0$, the integral gives
+For the case of constant potential \(\phi_0(y,z) = \phi_0\), the integral gives
 \[ A_{nm} = \frac{4 \phi_0}{ab} \int_0^a \sin\left(\frac{n\pi y}{a}\right) dy \int_0^b \sin\left(\frac{m\pi z}{b}\right) dz. \]
-Evaluating the integral, we obtain that $A_{nm} = 0$ if $n$ or $m$ are even. For $n$ and $m$ odd:
+Evaluating the integral, we obtain that \(A_{nm} = 0\) if \(n\) or \(m\) are even. For \(n\) and \(m\) odd:
 \[ A_{nm} = \frac{16 \phi_0}{\pi^2 n m}  \]
         Therefore, the final solution is:
 \[ \phi(x,y,z) = \frac{16 \phi_0}{\pi^2} \sum_{\substack{n=1\\ n \text{ impar}}}^{\infty} \sum_{\substack{m=1\\ m \text{ impar}}}^{\infty} \frac{1}{n m} e^{-\pi \sqrt{(n/a)^2 + (m/b)^2} \, x} \sin\left(\frac{n\pi y}{a}\right) \sin\left(\frac{m\pi z}{b}\right). \]
