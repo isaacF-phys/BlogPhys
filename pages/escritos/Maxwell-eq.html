@@ -271,18 +271,18 @@
 <body>
     <div class="container">
         <!-- Botón para volver al índice -->
-        <a href="../index.html" class="boton-volver">← Volver al Laboratorio</a>
+        <a href="../index.html" class="boton-volver">← Back</a>
         
         <article class="articulo-completo">
             <header class="articulo-header">
-                <h1>⚡ Ecuaciones de Maxwell ⚡</h1>
+                <h1>⚡ Maxwell's Equations ⚡</h1>
                 <div class="metadata">
-                    <span>📅 10 Mayo 2024</span>
-                    <span>🏷️ Electromagnetismo</span>
-                    <span>⏱️ 20 min lectura</span>
+                    <span>📅 10 April 2026</span>
+                    <span>🏷️ electromagnetism</span>
+                 <!--   <span>⏱️ 20 min lectura</span>   -->
                 </div>
                 <div style="margin-top: 1.5rem; font-size: 1.1rem; color: var(--cyan-bright);">
-                    "Y dijo Dios: 'Sea la luz', y hubo ecuaciones de Maxwell"
+                  "And God said, 'Let there be light,' and there were Maxwell's equations."
                 </div>
             </header>
 
@@ -303,51 +303,51 @@
 
             <section>
                 <h2>1. Introducción Histórica</h2>
-                <p>En 1865, James Clerk Maxwell publicó <em>"A Dynamical Theory of the Electromagnetic Field"</em>, unificando electricidad, magnetismo y óptica en una sola teoría. Su mayor contribución fue el <strong>término de corriente de desplazamiento</strong> \( \mu_0\epsilon_0\frac{\partial\mathbf{E}}{\partial t} \), que predijo la existencia de ondas electromagnéticas.</p>
+                <p>In 1865, James Clerk Maxwell published <em>"A Dynamical Theory of the Electromagnetic Field"</em>, unifying electricity, magnetism, and optics into a single theory. His greatest contribution was the <strong>displacement current term</strong> \( \mu_0\epsilon_0\frac{\partial\mathbf{E}}{\partial t} \),who predicted the existence of electromagnetic waves.</p>
                 
                 <div class="nota-margen">
-                    <strong>🔬 Dato histórico:</strong> Maxwell calculó la velocidad de estas ondas usando \( c = 1/\sqrt{\mu_0\epsilon_0} \) y obtuvo ≈ 3×10⁸ m/s, coincidiendo con mediciones de la velocidad de la luz. Concluyó: <em>"La luz es una perturbación electromagnética"</em>.
+                    <strong>🔬 Historic fact:</strong> Maxwell calculated the speed of these waves using \( c = 1/\sqrt{\mu_0\epsilon_0} \) and obtained ≈ 3×10⁸ m/s, coinciding with measurements of the speed of light. He concluded: <em>"Light is an electromagnetic disturbance"</em>.
                 </div>
             </section>
 
             <section>
-                <h2>2. Las Cuatro Ecuaciones (Forma Diferencial)</h2>
+                <h2>2. The Four Equations (Differential Form)</h2>
                 
                 <div class="grid-maxwell">
                     <div class="maxwell-card">
-                        <h4>🔴 Ley de Gauss (Eléctrica)</h4>
+                        <h4> Gauss Law (Electric)</h4>
                         <div class="ecuacion-math">\[\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}\]</div>
-                        <p style="margin-top: 1rem;">Las cargas eléctricas son fuentes del campo eléctrico. Las líneas de campo nacen en cargas positivas y mueren en negativas.</p>
+                        <p style="margin-top: 1rem;">Electric charges are sources of the electric field. Field lines originate at positive charges and terminate at negative charges.</p>
                     </div>
                     
                     <div class="maxwell-card">
-                        <h4>🔵 Ley de Gauss (Magnética)</h4>
+                        <h4> Gauss Law (Magnetic)</h4>
                         <div class="ecuacion-math">\[\nabla \cdot \mathbf{B} = 0\]</div>
-                        <p style="margin-top: 1rem;">No existen monopolos magnéticos. Las líneas de campo magnético son siempre cerradas.</p>
+                        <p style="margin-top: 1rem;">Magnetic monopoles do not exist. Magnetic field lines are always closed loops.</p>
                     </div>
                     
                     <div class="maxwell-card">
-                        <h4>🟡 Ley de Faraday-Lenz</h4>
+                        <h4> Faraday-Lenz Law</h4>
                         <div class="ecuacion-math">\[\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}\]</div>
-                        <p style="margin-top: 1rem;">Un campo magnético variable en el tiempo induce un campo eléctrico rotacional.</p>
+                        <p style="margin-top: 1rem;">A time-varying magnetic field induces a rotational electric field.</p>
                     </div>
                     
                     <div class="maxwell-card">
-                        <h4>🟢 Ley de Ampère-Maxwell</h4>
+                        <h4> Ampère-Maxwell Law</h4>
                         <div class="ecuacion-math">\[\nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}\]</div>
-                        <p style="margin-top: 1rem;">Las corrientes eléctricas y los campos eléctricos variables generan campo magnético.</p>
+                        <p style="margin-top: 1rem;">Electric currents and changing electric fields generate a magnetic field.</p>
                     </div>
                 </div>
             </section>
 
             <section>
                 <h2>3. Forma Integral</h2>
-                <p>Aplicando los teoremas de Gauss y Stokes, obtenemos la forma integral (útil para problemas con simetría):</p>
+                <p>Applying Gauss's \left(\int_V (\nabla\cdot \vec{v})\,dV = \oint_S \vec{v} \cdot d\vec{a}\right) and Stokes' theorems \left(\int_S (\nabla\times \vec{v})\cdot d\vec{a} = \oint_C \vec{v} \cdot d\vec{l}\right), we obtain the integral form:</p>
                 
                 <table>
                     <tr>
-                        <th>Forma Diferencial</th>
-                        <th>Forma Integral</th>
+                        <th>Differential Form</th>
+                        <th>Integral Form</th>
                     </tr>
                     <tr>
                         <td>\(\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}\)</td>
@@ -367,6 +367,9 @@
                     </tr>
                 </table>
             </section>
+
+
+            <!--
 
             <section>
                 <h2>4. Ondas Electromagnéticas</h2>
@@ -444,7 +447,7 @@ Ez[0] = Ez[-1] = 0</code></pre>
 
                 <h3>5.1 Animación de la Onda EM</h3>
                 
-                <!-- REEMPLAZA ESTE ID CON EL DE TU VIDEO DE YOUTUBE -->
+                <!-- REEMPLAZA ESTE ID CON EL DE TU VIDEO DE YOUTUBE 
                 <div class="video-container">
                     <iframe 
                         width="560" 
@@ -564,17 +567,19 @@ Ez[0] = Ez[-1] = 0</code></pre>
                     <p style="margin-top: 1rem;">Densidad Lagrangiana del campo electromagnético</p>
                 </div>
             </section>
+            -->
 
             <section>
-                <h2>📚 Referencias</h2>
+                <h2>📚 References</h2>
                 <ol>
-                    <li>Jackson, J. D. (1998). <em>Classical Electrodynamics</em> (3rd ed.). Wiley.</li>
+          <!--          <li>Jackson, J. D. (1998). <em>Classical Electrodynamics</em> (3rd ed.). Wiley.</li>    -->
                     <li>Griffiths, D. J. (2017). <em>Introduction to Electrodynamics</em> (4th ed.). Cambridge University Press.</li>
-                    <li>Maxwell, J. C. (1865). "A Dynamical Theory of the Electromagnetic Field". <em>Philosophical Transactions of the Royal Society</em>, 155, 459-512.</li>
                     <li>Feynman, R. P., Leighton, R. B., & Sands, M. (1964). <em>The Feynman Lectures on Physics, Vol. II</em>. Addison-Wesley.</li>
                 </ol>
             </section>
 
+            
+<!--
             <section style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--cyan-neon);">
                 <h3>🔗 Recursos Adicionales</h3>
                 <ul>
@@ -583,17 +588,17 @@ Ez[0] = Ez[-1] = 0</code></pre>
                     <li><a href="#" style="color: var(--cyan-bright);">📊 Datos experimentales (osciloscopio)</a></li>
                 </ul>
             </section>
-        </article>
+        </article>   -->
         
         <!-- Navegación entre ejercicios -->
         <div style="display: flex; justify-content: space-between; margin: 2rem 0;">
-            <a href="pozo-cuantico.html" class="boton-volver">← Anterior: Pozo Cuántico</a>
-            <a href="lagrangiano.html" class="boton-volver">Siguiente: Mecánica Lagrangiana →</a>
+            <a href="pozo-cuantico.html" class="boton-volver">← Previous </a>
+            <a href="lagrangiano.html" class="boton-volver">Next  →</a>
         </div>
         
         <!-- Botón para volver -->
         <div style="text-align: center;">
-            <a href="../index.html" class="boton-volver">← Volver al Índice de Escritos</a>
+            <a href="../index.html" class="boton-volver">← Return to the Index of Writings</a>
         </div>
     </div>
 
