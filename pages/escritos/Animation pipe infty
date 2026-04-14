@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation pipe infty</title>
+    
+    <!-- Fuentes Sci-Fi -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- MathJax para LaTeX -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    
+    <style>
+        :root {
+            --space-black: #0B0C10;
+            --dark-gray: #1F2833;
+            --cyan-neon: #45A29E;
+            --cyan-bright: #66FCF1;
+            --amber: #F2A900;
+            --text-light: #C5C6C7;
+            --glow: 0 0 10px rgba(102, 252, 241, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--space-black) 0%, #0a0f1a 100%);
+            color: var(--text-light);
+            font-family: 'Exo 2', sans-serif;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 230px 80px, var(--cyan-bright), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 250px 250px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .articulo-completo {
+            background: rgba(31, 40, 51, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--cyan-neon);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: var(--glow);
+        }
+
+        .articulo-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--amber);
+        }
+
+        .articulo-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            color: var(--cyan-bright);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(102, 252, 241, 0.5);
+        }
+
+        .metadata {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            color: var(--amber);
+            font-family: 'Courier New', monospace;
+        }
+
+        .ecuacion-destacada {
+            background: rgba(11, 12, 16, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--cyan-bright);
+            overflow-x: auto;
+            text-align: center;
+        }
+
+        .ecuacion-destacada-grande {
+            background: linear-gradient(135deg, rgba(69, 162, 158, 0.15), rgba(242, 169, 0, 0.05));
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 2.5rem 0;
+            border: 2px solid var(--cyan-neon);
+            overflow-x: auto;
+            text-align: center;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyan-bright);
+            margin: 2.5rem 0 1.5rem 0;
+            font-size: 1.8rem;
+            border-left: 4px solid var(--amber);
+            padding-left: 1rem;
+        }
+
+        h3 {
+            color: var(--amber);
+            margin: 2rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        p {
+            margin: 1.2rem 0;
+            text-align: justify;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 2.5rem 0;
+            border-radius: 10px;
+            border: 1px solid var(--cyan-neon);
+            box-shadow: var(--glow);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .boton-volver {
+            display: inline-block;
+            background: transparent;
+            color: var(--cyan-bright);
+            border: 2px solid var(--cyan-neon);
+            padding: 0.8rem 2rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .boton-volver:hover {
+            background: var(--cyan-neon);
+            color: var(--space-black);
+            box-shadow: var(--glow);
+        }
+
+        .nota-margen {
+            background: rgba(242, 169, 0, 0.08);
+            padding: 1.2rem 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 3px solid var(--amber);
+        }
+
+        .grid-maxwell {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .maxwell-card {
+            background: rgba(11, 12, 16, 0.5);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--cyan-neon);
+        }
+
+        .maxwell-card h4 {
+            color: var(--amber);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .ecuacion-math {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        code {
+            background: var(--dark-gray);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            color: var(--cyan-bright);
+            font-family: 'Courier New', monospace;
+        }
+
+        pre {
+            background: var(--dark-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #333;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            line-height: 1.8;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid var(--cyan-neon);
+        }
+
+        th {
+            background: rgba(69, 162, 158, 0.2);
+            color: var(--cyan-bright);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .grid-maxwell {
+                grid-template-columns: 1fr;
+            }
+            .articulo-completo {
+                padding: 1.5rem;
+            }
+            .articulo-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botón para volver al índice -->
+        <a href="../index.html" class="boton-volver">← Back</a>
+        
+        <article class="articulo-completo">
+            <header class="articulo-header">
+                <h1>Separation of Variables: </h1>
+                <div class="metadata"> 
+                    <span>📅 13 April 2026</span>
+                    <span>🏷️ Electromagnetism</span>
+                 <!--   <span>⏱️ 20 min lectura</span>   -->
+                </div>
+                <div style="margin-top: 1.5rem; font-size: 1.1rem; color: var(--cyan-bright);">
+                  "And God said, 'Let there be light,' and there were Maxwell's equations."
+                </div>
+            </header>
+
+      
+
+            <section>
+                <h2>1. problem statement</h2>
+                  <p> An infinitely long rectangular metal pipe (sides \(a\) and \(b\)) is grounded, but one end, at \(x = 0\), is maintained at a specified potential \(\phi_0(y,z)\), as indicated in the figure below. Find the potential inside the pipe.
+                  <p> Applying the method of separation of variables in Cartesian coordinates to Laplace's equation 
+                      \[ \nabla^2 \phi = 0 \] and given the zero boundary conditions on the four side walls, the general solution is a double Fourier series in sines with exponential decay in $x$:
+                      \[ \phi(x,y,z) = \sum_{n=1}^{\infty} \sum_{m=1}^{\infty} A_{nm} \, e^{-\pi \sqrt{(n/a)^2 + (m/b)^2} \, x} \, \sin\left(\frac{n\pi y}{a}\right) \sin\left(\frac{m\pi z}{b}\right). \]
+The coefficients $A_{nm}$ are determined from the boundary condition at $x=0$:
+\[ \phi_0(y,z) = \phi(0,y,z) = \sum_{n,m} A_{nm} \sin\left(\frac{n\pi y}{a}\right) \sin\left(\frac{m\pi z}{b}\right). \]
+For the case of constant potential $\phi_0(y,z) = \phi_0$, the integral gives
+\[ A_{nm} = \frac{4 \phi_0}{ab} \int_0^a \sin\left(\frac{n\pi y}{a}\right) dy \int_0^b \sin\left(\frac{m\pi z}{b}\right) dz. \]
+Evaluating the integral, we obtain that $A_{nm} = 0$ if $n$ or $m$ are even. For $n$ and $m$ odd:
+\[ A_{nm} = \frac{16 \phi_0}{\pi^2 n m}  \]
+        Therefore, the final solution is:
+\[ \phi(x,y,z) = \frac{16 \phi_0}{\pi^2} \sum_{\substack{n=1\\ n \text{ impar}}}^{\infty} \sum_{\substack{m=1\\ m \text{ impar}}}^{\infty} \frac{1}{n m} e^{-\pi \sqrt{(n/a)^2 + (m/b)^2} \, x} \sin\left(\frac{n\pi y}{a}\right) \sin\left(\frac{m\pi z}{b}\right). \]
+            </section>
+
+           
+
+            <section>
+                <h2>2. Slice Animation </h2>
+                <p>Applying Gauss's \(\left(\int_V (\nabla\cdot \vec{v})\,dV = \oint_S \vec{v} \cdot d\vec{a}\right)\) and Stokes' theorems \(\left(\int_S (\nabla\times \vec{v})\cdot d\vec{a} = \oint_C \vec{v} \cdot d\vec{l}\right)\), we obtain the integral form:</p>
+
+ <!--   ANIMACION POR YT   -->
+                <div class="video-container">
+                    <iframe 
+                        width="560" 
+                        height="315" 
+                        src="https://youtu.be/d4qlOz35cqU3" 
+                        title="Simulation: Potential for an infinitely long rectangular pipe in the x direction"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+
+
+
+
+
+
+
+
+
+
+       <section>
+                <h2>📚 References</h2>
+                <ol>
+          <!--          <li>Jackson, J. D. (1998). <em>Classical Electrodynamics</em> (3rd ed.). Wiley.</li>    -->
+                    <li>Griffiths, D. J. (2017). <em>Introduction to Electrodynamics</em> (4th ed.). Cambridge University Press.</li>
+                    <li>Feynman, R. P., Leighton, R. B., & Sands, M. (1964). <em>The Feynman Lectures on Physics, Vol. II</em>. Addison-Wesley.</li>
+                </ol>
+            </section>
+
+
+
+        
+        <!-- Navegación entre ejercicios -->
+        <div style="display: flex; justify-content: space-between; margin: 2rem 0;">
+            <a href="pozo-cuantico.html" class="boton-volver">← Previous </a>
+            <a href="lagrangiano.html" class="boton-volver">Next  →</a>
+        </div>
+        
+        <!-- Botón para volver -->
+        <div style="text-align: center;">
+            <a href="../index.html" class="boton-volver">← Return to the Index of Writings</a>
+        </div>
+    </div>
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                tags: 'ams',
+                macros: {
+                    E: '\\mathbf{E}',
+                    B: '\\mathbf{B}',
+                    J: '\\mathbf{J}'
+                }
+            }
+        };
+    </script>
+</body>
+</html>
