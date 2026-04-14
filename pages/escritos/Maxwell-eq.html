@@ -271,7 +271,7 @@
 <body>
     <div class="container">
         <!-- Botón para volver al índice -->
-        <a href="../index.html" class="boton-volver">← Back</a>
+        <a href="index.html" class="boton-volver">← Back</a>
         
         <article class="articulo-completo">
             <header class="articulo-header">
@@ -303,7 +303,7 @@
 
             <section>
                 <h2>1. Historical Introduction</h2>
-                <p>In 1865, James Clerk Maxwell published <em>"A Dynamical Theory of the Electromagnetic Field"</em>, unifying electricity, magnetism, and optics into a single theory. His greatest contribution was the <strong>displacement current term</strong> \( \mu_0\epsilon_0\frac{\partial\mathbf{E}}{\partial t} \),who predicted the existence of electromagnetic waves.</p>
+                <p>In 1865, James Clerk Maxwell published <em>"A Dynamical Theory of the Electromagnetic Field"</em>, unifying electricity, magnetism, and optics into a single theory. His greatest contribution was the <strong>displacement current term</strong> \( \mu_0\epsilon_0\frac{\partial\vec{E}}{\partial t} \),who predicted the existence of electromagnetic waves.</p>
                 
                 <div class="nota-margen">
                     <strong>🔬 Historic fact:</strong> Maxwell calculated the speed of these waves using \( c = 1/\sqrt{\mu_0\epsilon_0} \) and obtained ≈ 3×10⁸ m/s, coinciding with measurements of the speed of light. He concluded: <em>"Light is an electromagnetic disturbance"</em>.
@@ -351,7 +351,7 @@
                     </tr>
                     <tr>
                         <td>\(\nabla \cdot \vec{E} = \frac{\rho_T}{\varepsilon_0}\)</td>
-                        <td>\(\oint_S \vec{E} \cdot d\vec{a} = \frac{Q_{\text{enc}}^{T}{\varepsilon_0}\)</td>
+                        <td>\(\oint_S \vec{E} \cdot d\vec{a} = \frac{Q_{\text{enc}}^{\text{T}}}{\varepsilon_0}\)</td>
                     </tr>
                     <tr>
                         <td>\(\nabla \cdot \vec{B} = 0\)</td>
@@ -363,7 +363,7 @@
                     </tr>
                     <tr>
                         <td>\(\nabla \times \vec{B} = \mu_0 \vec{J}_T + \mu_0 \varepsilon_0 \frac{\partial \vec{E}}{\partial t}\)</td>
-                        <td>\(\oint_C \vec{B} \cdot d\vec{l} = \mu_0 I_{\text{enc}}^{\text{atr}} + \mu_0 \varepsilon_0 \frac{d}{dt}\int_S \vec{E} \cdot d\vec{a}\)</td>
+                        <td>\(\oint_C \vec{B} \cdot d\vec{l} = \mu_0 I_{\text{T}}^{\text{atr}} + \mu_0 \varepsilon_0 \frac{d}{dt}\int_S \vec{E} \cdot d\vec{a}\)</td>
                     </tr>
                 </table>
             </section>
@@ -592,13 +592,13 @@ Ez[0] = Ez[-1] = 0</code></pre>
         
         <!-- Navegación entre ejercicios -->
         <div style="display: flex; justify-content: space-between; margin: 2rem 0;">
-            <a href="pozo-cuantico.html" class="boton-volver">← Previous </a>
-            <a href="lagrangiano.html" class="boton-volver">Next  →</a>
+            <a href="pozo.html" class="boton-volver">← Previous </a>
+            <a href="pages/escritos/Animation-pipe-infty.html" class="boton-volver">Next  →</a>
         </div>
         
         <!-- Botón para volver -->
         <div style="text-align: center;">
-            <a href="../index.html" class="boton-volver">← Return to the Index of Writings</a>
+            <a href=".../index.html" class="boton-volver">← Return to the Index of Writings</a>
         </div>
     </div>
 
